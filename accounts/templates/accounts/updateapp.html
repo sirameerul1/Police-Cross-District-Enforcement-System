@@ -1,0 +1,174 @@
+{% include 'accounts/maintemplate.html' %}
+
+{% block content %}
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+
+<br>
+ <div class="col-md-11">
+        <h4>Existed Aplication Information</h4>
+        <br>
+        <div class="card card-body">
+         <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'pending')" id="defaultOpen">Pending</button>
+            <button class="tablinks" onclick="openCity(event, 'approved')">Approved</button>
+            <button class="tablinks" onclick="openCity(event, 'declined')">Declined</button>
+            </div>
+            <div id="pending" class="tabcontent">
+              <div style="overflow-x:auto;">
+                  <table class="table table-sm">
+                      <tr>
+                          <th>Driver Name</th>
+                          <th>Plate</th>
+                          <th>Origin</th>
+                          <th>Destination</th>
+                          <th>Date Leaving</th>
+                          <th>Status</th>
+                          <th>Delete</th>
+                      </tr>
+
+                      <tr>
+                      {% for application in application %}
+                      <tr>
+                          <th>{{application.name}}</th>
+                          <th>{{application.plate}}</th>
+                          <th>{{application.origin}}</th>
+                          <th>{{application.destination}}</th>
+                          <th>{{application.date_leaving}}</th>
+                          <th><a href="{% url 'applicationviewer' application.id %}">{{application.status}}</a></th>
+                          <th><a href="{% url 'delete_application' application.id %}">Delete</a></th>
+
+                      {% endfor %}
+                  </table>
+                </div>
+            </div>
+
+            <div id="approved" class="tabcontent">
+              <div style="overflow-x:auto;">
+                  <table class="table table-sm">
+                      <tr>
+                          <th>Driver Name</th>
+                          <th>Plate</th>
+                          <th>Origin</th>
+                          <th>Destination</th>
+                          <th>Date Leaving</th>
+                          <th>Status</th>
+                      </tr>
+
+                      <tr>
+                      {% for application_complete in application_complete %}
+                      <tr>
+                          <th>{{application_complete.name}}</th>
+                          <th>{{application_complete.plate}}</th>
+                          <th>{{application_complete.origin}}</th>
+                          <th>{{application_complete.destination}}</th>
+                          <th>{{application_complete.date_leaving}}</th>
+                          <th><a href="{% url 'applicationviewer' application_complete.id %}">{{application_complete.status}}</a></th>
+                      {% endfor %}
+                    </table>
+                  </div>
+            </div>
+
+            <div id="declined" class="tabcontent">
+              <div style="overflow-x:auto;">
+                  <table class="table table-sm">
+                      <tr>
+                          <th>Driver Name</th>
+                          <th>Plate</th>
+                          <th>Origin</th>
+                          <th>Destination</th>
+                          <th>Date Leaving</th>
+                          <th>Status</th>
+                      </tr>
+
+                      <tr>
+                      {% for application_declined in application_declined %}
+                      <tr>
+                          <th>{{application_declined.name}}</th>
+                          <th>{{application_declined.plate}}</th>
+                          <th>{{application_declined.origin}}</th>
+                          <th>{{application_declined.destination}}</th>
+                          <th>{{application_declined.date_leaving}}</th>
+                          <th><a href="{% url 'applicationviewer' application_declined.id %}">{{application_declined.status}}</a></th>
+                      {% endfor %}
+                  </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+function openCity(evt, functionname) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(functionname).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
+
+{% endblock%}

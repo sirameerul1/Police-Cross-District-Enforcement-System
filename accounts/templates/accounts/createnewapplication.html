@@ -1,0 +1,447 @@
+{% include 'accounts/maintemplate.html' %}
+
+{% block content %}
+
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.alert.success {background-color: #04AA6D;}
+.alert.info {background-color: #2196F3;}
+.alert.warning {background-color: #ff9800;}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+<br>
+
+<h4>Create New Application Form</h4>
+<br>
+<div class="main" id="section1">
+    <h5> Destination Information</h5>
+        <div class="row">
+            <div class="col-md">
+                <div class="card card-body">
+                  {%for message in messages%}
+                  <div class="alert warning">
+                      <span class="closebtn">&times;</span>  
+                      <strong>Errorr!</strong> {{message}}
+                    </div>
+                  {% endfor %}
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        {% comment %} <div class="row"> {% endcomment %}
+                                <h8> Car Type (Example: Proton Wira)</h8> 
+                                <br>
+                                <input type="text" name="Car"maxlength="30" required id="id_Car"></input>
+                                <br>
+                                <br>
+                                <h8> Car Plate</h8> 
+                                <br>
+                                <input type="text" name="plate" maxlength="10" required id="id_plate" style="text-transform:uppercase" ></input>
+                                <br>
+                                <br>
+                                <h8> Date Leaving</h8> 
+                                <br>
+                                <input type="date" name="date_leaving" required id="id_date_leaving" ></input>
+                                <br>
+                                <br>
+                                <h8> Date Arriving</h8> 
+                                <br>
+                                <input type="date" name="date_arrive"  id="id_date_arrive" ></input>
+                                <br>
+                                <br>
+                                <h8> Origin Address</h8> 
+                                <br>
+                                <input type="text" name="origin" maxlength="10000" required id="id_origin"></input>
+
+                                <br>
+                                <br>
+                                <h8> Origin State</h8> 
+                                <br>
+                                <select name="origin_state" id="id_origin_state">
+                                <br>
+                                  <option value="Default" selected="">Default</option>
+                                
+                                  <option value="Johor">Johor</option>
+                                
+                                  <option value="Kedah">Kedah</option>
+                                
+                                  <option value="Kelantan">Kelantan</option>
+                                
+                                  <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                
+                                  <option value="Labuan">Labuan</option>
+                                
+                                  <option value="Melaka">Melaka</option>
+                                
+                                  <option value="Negeri Sembilan">Negeri Sembilan</option>
+                                
+                                  <option value="Pahang">Pahang</option>
+                                
+                                  <option value="Perak">Perak</option>
+                                
+                                  <option value="Perlis">Perlis</option>
+                                
+                                  <option value="Putrajaya">Putrajaya</option>
+                                
+                                  <option value="Sabah">Sabah</option>
+                                
+                                  <option value="Sarawak">Sarawak</option>
+                                
+                                  <option value="Terengganu">Terengganu</option>
+                                
+                                </select>
+
+                                <br>
+                                <br>
+                                <h8> Destination Address</h8> 
+                                <br>
+                                <input type="text" name="destination" maxlength="10000" required id="id_destination"></input>
+                                
+                                <br>
+                                <br>
+                                <h8> Destination State</h8> 
+                                <br>
+                                <select name="destination_state" id="id_destination_state">
+                                  <br>
+                                  <option value="Default" selected="">Default</option>
+                                
+                                  <option value="Johor">Johor</option>
+                                
+                                  <option value="Kedah">Kedah</option>
+                                
+                                  <option value="Kelantan">Kelantan</option>
+                                
+                                  <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                
+                                  <option value="Labuan">Labuan</option>
+                                
+                                  <option value="Melaka">Melaka</option>
+                                
+                                  <option value="Negeri Sembilan">Negeri Sembilan</option>
+                                
+                                  <option value="Pahang">Pahang</option>
+                                
+                                  <option value="Perak">Perak</option>
+                                
+                                  <option value="Perlis">Perlis</option>
+                                
+                                  <option value="Putrajaya">Putrajaya</option>
+                                
+                                  <option value="Sabah">Sabah</option>
+                                
+                                  <option value="Sarawak">Sarawak</option>
+                                
+                                  <option value="Terengganu">Terengganu</option>
+                                
+                                </select>
+                                
+                                
+                                
+                                
+                                <br>
+                                <br>
+                                <h8> Reason</h8> 
+                                <br>
+                                <input type="text" name="reason" maxlength="500" required id="id_reason"></input>
+                                
+                                <br>
+                                <br>
+                                <h8> Document Description</h8> 
+                                <br>
+                                <input type="text" name="document_description" value="" maxlength="500" required="" id="id_document_description">
+
+                                <br>
+                                <br>
+                                <h8> Document</h8> 
+                                <br>
+                                <input type="file" name="document" required id="id_document"></input>
+                                <br>
+                                <br>
+                                <br>
+                                    <h5> Passenger Information</h5>
+                                    <hr>
+                                                    <h8> Name Passenger 1: </h8> 
+                                                    <br>
+                                                    <input type="text" name="name_passenger1" maxlength="200" id="id_name_passenger1"></input>
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Ic Passenger 1: </h8> 
+                                                    <br>
+                                                    <input type="number" name="ic_passenger1" id="id_ic_passenger1"></input>
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Image Passenger 1: </h8> 
+                                                    <br>
+                                                    <input type="file" name="image1" accept="image/*" id="id_image1"></input>
+                                                    <br>
+
+                                                    <br>
+                                                    <br>
+                                                    <h8> Image IC Passenger 1: </h8> 
+                                                    <br>
+                                                    <input type="file" name="image_ic1" accept="image/*" id="id_image_ic1">
+
+                                                    <br>
+                                                    <br>
+                                                    <h8> Vaccination Proof(Passenger 1)</h8> 
+                                                    <br>
+                                                    <input type="file" name="vaccination_pdf_passenger1" accept="image/*" id="id_vaccination_pdf_passenger1">
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Vaccination Status (Passenger 1)</h8> 
+                                                    <br>
+                                                    <select name="vaccination_status_passenger1" id="id_vaccination_status_passenger1">
+                                                      <option value="Default">Default</option>
+                                                    
+                                                      <option value="No Vaccinate">No Vaccinate</option>
+                                                    
+                                                      <option value="First Dose">First Dose</option>
+                                                    
+                                                      <option value="Second Dose (Partial)">Second Dose (Partial)</option>
+                                                    
+                                                      <option value="Second Dose (Full)">Second Dose (Full)</option>
+                                                    
+                                                    </select>
+                                                   
+
+
+                                                    <br>
+                                                    <br>
+                                                    <h8> Name Passenger 2: </h8> 
+                                                    <br>
+                                                    <input type="text" name="name_passenger2" maxlength="200" id="id_name_passenger2"></input>
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Ic Passenger 2: </h8> 
+                                                    <br>
+                                                    <input type="number" name="ic_passenger2" id="id_ic_passenger2"></input>
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Image Passenger 2: </h8> 
+                                                    <br>
+                                                    <input type="file" name="image2" accept="image/*" id="id_image2"></input>
+
+                                                    <br>
+                                                    <br>
+                                                    <h8> Image IC Passenger 2: </h8> 
+                                                    <br>
+                                                    <input type="file" name="image_ic2" accept="image/*" id="id_image_ic2">
+
+
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Vaccination Proof(Passenger 2)</h8> 
+                                                    <br>
+                                                    <input type="file" name="vaccination_pdf_passenger2" accept="image/*" id="id_vaccination_pdf_passenger2">
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Vaccination Status (Passenger 2)</h8> 
+                                                    <br>
+                                                    <select name="vaccination_status_passenger2" id="id_vaccination_status_passenger2">
+                                                      <option value="Default">Default</option>
+                                                    
+                                                      <option value="No Vaccinate">No Vaccinate</option>
+                                                    
+                                                      <option value="First Dose">First Dose</option>
+                                                    
+                                                      <option value="Second Dose (Partial)">Second Dose (Partial)</option>
+                                                    
+                                                      <option value="Second Dose (Full)">Second Dose (Full)</option>
+                                                    
+                                                    </select>
+
+                                                    <br>
+                                                    <br>
+                                                    <h8> Name Passenger 3: </h8> 
+                                                    <br>
+                                                    <input type="text" name="name_passenger3" maxlength="200" id="id_name_passenger3"></input>
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Ic Passenger 3: </h8> 
+                                                    <br>
+                                                    <input type="number" name="ic_passenger3" id="id_ic_passenger3"></input>
+
+                                                      <br>
+                                                    <br>
+                                                    <h8> Image Passenger 3: </h8> 
+                                                    <br>
+                                                    <input type="file" name="image3" accept="image/*" id="id_image3"></input> 
+
+                                                    <br>
+                                                    <br>
+                                                    <h8> Image IC Passenger 3: </h8> 
+                                                    <br>
+                                                    <input type="file" name="image_ic3" accept="image/*" id="id_image_ic3">
+
+
+                                                    <br>
+                                                    <br>
+                                                    <h8> Vaccination Proof(Passenger 3)</h8> 
+                                                    <br>
+                                                    <input type="file" name="vaccination_pdf_passenger3" accept="image/*" id="id_vaccination_pdf_passenger3">
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Vaccination Status (Passenger 3)</h8> 
+                                                    <br>
+                                                    <select name="vaccination_status_passenger3" id="id_vaccination_status_passenger3">
+                                                      <option value="Default">Default</option>
+                                                    
+                                                      <option value="No Vaccinate">No Vaccinate</option>
+                                                    
+                                                      <option value="First Dose">First Dose</option>
+                                                    
+                                                      <option value="Second Dose (Partial)">Second Dose (Partial)</option>
+                                                    
+                                                      <option value="Second Dose (Full)">Second Dose (Full)</option>
+                                                    
+                                                    </select>
+
+
+                                                    <br>
+                                                    <br>
+                                                    <h8> Name Passenger 4: </h8> 
+                                                    <br>
+                                                    <input type="text" name="name_passenger4" maxlength="200" id="id_name_passenger4"></input>
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> IC Passenger 4: </h8> 
+                                                    <br>
+                                                    <input type="number" name="ic_passenger4" id="id_ic_passenger4"></input>
+
+                                                    <br>
+                                                    <br>
+                                                    <h8> Image Passenger 4: </h8> 
+                                                    <br>
+                                                    <input type="file" name="image4" accept="image/*" id="id_image4"></input>
+                                                    
+                                                  
+                                                    <br>
+                                                    <br>
+                                                    <h8> Image IC Passenger 4: </h8> 
+                                                    <br>
+                                                    <input type="file" name="image_ic4" accept="image/*" id="id_image_ic4">
+                                                  
+                                                  
+                                                    <br>
+                                                    <br>
+                                                    <h8> Vaccination Proof(Passenger 4)</h8> 
+                                                    <br>
+                                                    <input type="file" name="vaccination_pdf_passenger4" accept="image/*" id="id_vaccination_pdf_passenger4">
+                                                    
+                                                    <br>
+                                                    <br>
+                                                    <h8> Vaccination Status (Passenger 4)</h8> 
+                                                    <br>
+                                                    <select name="vaccination_status_passenger4" id="id_vaccination_status_passenger4">
+                                                      <option value="Default">Default</option>
+                                                    
+                                                      <option value="No Vaccinate">No Vaccinate</option>
+                                                    
+                                                      <option value="First Dose">First Dose</option>
+                                                    
+                                                      <option value="Second Dose (Partial)">Second Dose (Partial)</option>
+                                                    
+                                                      <option value="Second Dose (Full)">Second Dose (Full)</option>
+                                                    
+                                                    </select>
+                                                    <br>
+                                                    <br>
+                                                    <input type="submit">
+                                                  </form>
+                    </div>
+            </div>
+        </div>
+</div>
+
+<br>
+
+
+        
+
+{% endblock %}

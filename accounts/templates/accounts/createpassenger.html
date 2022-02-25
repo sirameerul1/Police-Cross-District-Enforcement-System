@@ -1,0 +1,16 @@
+{% include 'accounts/maintemplate.html' %}
+
+{% block content %}
+
+<br>
+
+<h4>Create New Passenger Data</h4>
+<br>
+<form action="" method="POST">
+{% csrf_token %}
+{{form}}
+<input type="submit">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% include 'accounts/maintemplate.html' %}
+
+{% block content %}
+<br>
+ <div class="col-md-11">
+        <h4>Existed Driver Information</h4>
+        <br>
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'createnewdriver' %}">Add New Driver Information</a>
+            <table class="table table-sm">
+                <tr>
+                 <th>Driver Name:</th>
+                 <th>IC/Passport Number</th>
+                 <th>Registered Date</th>
+                 <th>View More</th>
+                 <th>Delete</th>
+             </tr>
+
+             <tr>
+             {% for userdriver in userdriver %}
+             <tr>
+                <th>{{userdriver.name}}</th>
+                <th>{{userdriver.ic}}</th>
+                <th>{{userdriver.date_created}}</th>
+                <th><a href="{% url 'driver' userdriver.id %}">View More</a></th>
+                <th><a href="{% url 'delete_driver' userdriver.id %}">Delete</a></th>
+
+             {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock%}

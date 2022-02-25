@@ -1,0 +1,35 @@
+{% include 'accounts/maintemplate.html' %}
+
+{% block content %}
+
+
+
+<br>
+<div class="col-md-11">
+        <br>
+        <div class="card card-body">
+        <h3>Application List (PENDING) </h3>
+            <table class="table table-sm">
+                <tr>
+                
+                 <th>Driver Name</th>
+                 <th>Plate Number</th>
+                 <th>Date Created</th>
+                 <th>Review</th>    
+             </tr>
+
+             <tr>
+             {% for pendingapplication in pendingapplication %}
+             <tr>
+                <th>{{pendingapplication.name}}</th>
+                <th>{{pendingapplication.plate}}</th>
+                <th>{{pendingapplication.date_created}}</th>
+                <th><a href="{% url 'application_view' pendingapplication.id %}">Review</a></th>
+
+             {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock%}

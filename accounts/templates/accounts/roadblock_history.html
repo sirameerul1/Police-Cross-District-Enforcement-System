@@ -1,0 +1,33 @@
+{% include 'accounts/maintemplate.html' %}
+{% block content %}
+
+<br>
+
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5> Scanned Plate Number</h5>
+                </div>
+            <div class="card card-body">
+                <table class="table">
+                <tr>
+                    <th> Car Plate </th>
+                    <th> Location </th>
+                    <th> Date Scanned </th>
+                    </tr>
+                    
+                    {% for i in userdriver%}
+                    <tr>
+                            <th>{{i.Car_plate}}</th>
+                            <th>{{i.location_data}}</th>
+                            <th>{{i.date_created}}</th>
+                    {% endfor%}
+                    
+                    
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</br>
+{% endblock content%}

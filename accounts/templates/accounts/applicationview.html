@@ -1,0 +1,478 @@
+{% include 'accounts/maintemplate.html' %}
+
+{% block content %}
+
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+
+<br>
+<h4> Application Viewer</h4>
+<hr>
+
+
+<div class="main" id="section1">
+    {% for application in application%}
+    <h5> Detail Application ({{application.origin_state}}) To ({{application.destination_state}})</h5>
+    {%endfor%}
+        <div class="row">
+            <div class="col-md">
+                <div class="card card-body">
+                    <div style="overflow-x:auto;">
+                        <table class="table table-sm">
+                            <tr>
+                                <th> Car Type</th>
+                                <th> Plate Number</th>
+                                <th> Date Leaving</th>
+                                <th> Date Arriving</th>
+                                <th> Origin</th>
+                                <th> Destination</th>
+                                <th> Reason</th>
+                                <th> Date Created</th>
+                                <th> Status</th>
+                                <th> Details </th>
+                            </tr>
+                            <tr>
+                            {% for application in application %}
+                                <th> {{application.Car}} </th>
+                                <th> {{application.plate}} </th>
+                                <th> {{application.date_leaving}} </th>
+                                <th> {{application.date_arrive}} </th>
+                                <th> {{application.origin}} </th>
+                                <th> {{application.destination}} </th>
+                                <th> {{application.reason}} </th>
+                                <th> {{application.date_created}} </th>
+                                <th> <a href="#section2"> {{application.status}} </th>
+                                <th> <a href="#section2">Details</a>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<br>
+<div class="main" id="section2">
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+            <h5>Citizen Details: </h5>
+            <hr>
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'driver')" id="defaultOpen">Driver</button>
+                <button class="tablinks" onclick="openCity(event, 'passenger1')">Passenger 1</button>
+                <button class="tablinks" onclick="openCity(event, 'passenger2')">Passenger 2</button>
+                <button class="tablinks" onclick="openCity(event, 'passenger3')">Passenger 3</button>
+                <button class="tablinks" onclick="openCity(event, 'passenger4')">Passenger 4</button>
+            </div>
+
+            <div id="passenger1" class="tabcontent">
+                <div style="overflow-x:auto;">
+                    <table>
+                        <tr>
+                            {% for application in application %}
+                            <th> Passenger Pic</th>
+                            <th> Passenger IC</th>
+                        </tr>
+                        
+                        <tr>
+                            <th> <img width="150" height="190" class="profile-pic" src="{{application.image1.url}}"> </th>
+                            <th> <img width="300" height="190" class="profile-pic" src="{{application.image_ic1.url}}"> </th>
+                        </tr>
+                            {%endfor%}
+                    </table>
+                
+                        <table class="table table-sm">
+                            <tr>
+                                <th>Name</th>
+                                <th>IC</th>
+                                <th>Vaccination Status</th>
+                            </tr>
+                            <hr>
+                            {% for application in application %}
+                            <tr>
+                                <th>{{application.name_passenger1}}</th>
+                                <th>{{application.ic_passenger1}}</th>
+                                <th>{{application.vaccination_status_passenger1}}</th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                
+            </div>
+        </div>
+
+        <div id="driver" class="tabcontent">
+            <div style="overflow-x:auto;">
+                <table>
+                    <tr>
+                        <th> Driver Pic</th>
+                        <th> Driver IC</th>
+                    </tr>
+                    <tr>
+                        {% for driver_data in driver_data %}
+                        <th><img  width="150" height="190" class="profile-pic" src="{{driver_data.profile_pic.url}} "></th>
+                        <th><img  width="300" height="190" class="profile-pic" src="{{driver_data.driver_ic.url}} "></th>
+                    </tr>
+                </table>
+            </div>
+                        {%endfor%}
+            <div style="overflow-x:auto;">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Name</th>
+                        <th>IC</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Vaccination Status</th>
+                    </tr>
+                        <hr>
+                    <tr>
+                        {% for driver_data in driver_data %}
+                        <th>{{driver_data.name}}</th>
+                        <th>{{driver_data.ic}}</th>
+                        <th>{{driver_data.Address}}</th>
+                        <th>{{driver_data.Phone}}</th>
+                        <th>{{driver_data.vaccination_status}}</th>
+                        {%endfor%}
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="passenger2" class="tabcontent">
+            <div style="overflow-x:auto;">
+                <table>
+                    <tr>
+                        {% for application in application %}
+                        <th> Passenger Pic</th>
+                        <th> Passenger IC</th>
+                    </tr>
+                    <tr>
+                        <th> <img width="150" height="190" class="profile-pic" src="{{application.image2.url}}"> </th>
+                        <th> <img width="300" height="190" class="profile-pic" src="{{application.image_ic2.url}}"> </th>
+                    </tr>
+                        {%endfor%}
+                </table>
+            </div>
+                        <table class="table table-sm">
+                            <tr>
+                                <th>Name</th>
+                                <th>IC</th>
+                                <th>Vaccination Status</th>
+                            </tr>
+                                <hr>
+                                {% for application in application %}
+                            <tr>
+                                <th>{{application.name_passenger2}}</th>
+                                <th>{{application.ic_passenger2}}</th>
+                                <th>{{application.vaccination_status_passenger2}}</th>
+                            </tr>
+                                {% endfor %}
+                        </table>
+            </table>
+        </div>
+
+        <div id="passenger3" class="tabcontent">
+            <div style="overflow-x:auto;">
+                <table>
+                    <tr>
+                        {% for application in application %}
+                        <th> Passenger Pic</th>
+                        <th> Passenger IC</th>
+                    </tr>
+                    <tr>
+                        <th> <img width="150" height="190" class="profile-pic" src="{{application.image3.url}}"> </th>
+                        <th> <img width="300" height="190" class="profile-pic" src="{{application.image_ic3.url}}"> </th>
+                    </tr>
+                        {%endfor%}
+                </table>
+            </div>
+                        <table class="table table-sm">
+                            <tr>
+                                <th>Name</th>
+                                <th>IC</th>
+                                <th>Vaccination Status</th>
+                            </tr>
+                                <hr>
+                                {% for application in application %}
+                            <tr>
+                                <th>{{application.name_passenger3}}</th>
+                                <th>{{application.ic_passenger3}}</th>
+                                <th>{{application.vaccination_status_passenger3}}</th>
+                            </tr>
+                                {% endfor %}
+                        </table>
+            </table>
+        </div>
+
+
+        <div id="passenger4" class="tabcontent">
+            <div style="overflow-x:auto;">  
+                <table>
+                    <tr>
+                        {% for application in application %}
+                        <th> Passenger Pic</th>
+                        <th> Passenger IC</th>
+                    </tr>
+                    <tr>
+                        <th> <img width="150" height="190" class="profile-pic" src="{{application.image4.url}}"> </th>
+                        <th> <img width="300" height="190" class="profile-pic" src="{{application.image_ic4.url}}"> </th>
+                    </tr>
+                        {%endfor%}
+                </table>
+            </div>
+                        <table class="table table-sm">
+                            <tr>
+                                <th>Name</th>
+                                <th>IC</th>
+                                <th>Vaccination Status</th>
+                            </tr>
+                                <hr>
+                                {% for application in application %}
+                            <tr>
+                                <th>{{application.name_passenger4}}</th>
+                                <th>{{application.ic_passenger4}}</th>
+                                <th>{{application.vaccination_status_passenger4}}</th>
+                            </tr>
+                                {% endfor %}
+                        </table>
+            </table>
+        </div>
+
+             {% comment %} <table>
+             <tr>
+             <th> Driver Pic</th>
+             <th> Driver IC</th>
+            </tr>
+                <tr>
+                {% for driver_data in driver_data %}
+                    <th><img  width="150" height="190" class="profile-pic" src="{{driver_data.profile_pic.url}} "></th>
+                    <th><img  width="300" height="190" class="profile-pic" src="{{driver_data.driver_ic.url}} "></th>
+                </tr>
+            </table>
+                
+                 
+            {%endfor%}
+            <div style="overflow-x:auto;">
+            <table class="table table-sm">
+            <tr>
+                <th>Name</th>
+                <th>IC</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Vaccination Status</th>
+            </tr>
+            <hr>
+            <tr>
+                {% for driver_data in driver_data %}
+                <th>{{driver_data.name}}</th>
+                <th>{{driver_data.ic}}</th>
+                <th>{{driver_data.Address}}</th>
+                <th>{{driver_data.Phone}}</th>
+                <th>{{driver_data.vaccination_status}}</th>
+                 {%endfor%}
+            </tr>
+            </table>
+            </div> {% endcomment %}
+        </div>
+    </div>
+
+        
+        
+
+    <div class="col-md">
+                <div class="card card-body">
+                        <h5> Approval System</h5>
+                        <hr>
+                        <h6> Related Document </h6>
+                        {% comment %} {% for application in application %}
+                            <p> Origin State: </p> 
+                            <p> {{application.origin_state}}
+                            <p> Destination State: </p> 
+                            <p> {{application.destination_state}}
+
+                        {%endfor%} {% endcomment %}
+                            <form method ="POST" action="" >
+                                    {% csrf_token%}
+                                    {{form.as_p}}
+                                    <input class="btn btn-outline-info btn-sm btn-block" type="submit"></input>
+                            </form>
+                        <hr>
+                        <div style="overflow-x:auto;">
+                                <table class="table table-sm">
+                                <tr>
+                                    <th>Document Name</th>
+                                    <th>View</th>
+                                </tr>
+                                <hr>
+                                <tr>
+                                    {% for driver_data in driver_data %}
+                                    <th>Driver Image</th>
+                                    <th><a href="{{driver_data.profile_pic.url}}">View</a></th>
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for driver_data in driver_data %}
+                                    <th>Driver IC</th>
+                                    <th><a href="{{driver_data.driver_ic.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for driver_data in driver_data %}
+                                    <th>Driver Vaccine</th>
+                                    <th><a href="{{driver_data.vaccination_pdf.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for application in application %}
+                                    <th>Passenger 1 IC</th>
+                                    <th><a href="{{application.image_ic1.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for application in application %}
+                                    <th>Passenger 1 Vaccine</th>
+                                    <th><a href="{{application.vaccination_pdf_passenger2.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for application in application %}
+                                    <th>Passenger 2 IC</th>
+                                    <th><a href="{{application.image_ic2.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for application in application %}
+                                    <th>Passenger 2 Vaccine</th>
+                                    <th><a href="{{application.vaccination_pdf_passenger2.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for application in application %}
+                                    <th>Passenger 3 IC</th>
+                                    <th><a href="{{application.image_ic3.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for application in application %}
+                                    <th>Passenger 3 Vaccine</th>
+                                    <th><a href="{{application.vaccination_pdf_passenger3.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for application in application %}
+                                    <th>Passenger 4 IC</th>
+                                    <th><a href="{{application.image_ic4.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for application in application %}
+                                    <th>Passenger 4 Vaccine</th>
+                                    <th><a href="{{application.vaccination_pdf_passenger4.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                <tr>
+                                    {% for application in application %}
+                                    <th>{{application.document_description}}</th>
+                                    <th><a href="{{application.document.url}}">View</a></th>
+
+                                    {%endfor%}
+                                </tr>
+                                </table>
+                        </div>
+                        
+                        {% comment %} <a class="btn btn-outline-info btn-sm btn-block" href="">Update Driver</a> {% endcomment %}
+                        {% comment %} <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_driver' driver.id %}">Delete Driver</a> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
+
+
+
+{% endblock%}

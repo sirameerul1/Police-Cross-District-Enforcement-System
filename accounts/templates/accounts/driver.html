@@ -1,0 +1,73 @@
+{% include 'accounts/maintemplate.html' %}
+
+{% block content %}
+<br>
+<h4>Update Driver Information</h4>
+<br>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+        <h5>Driver IC/Passport Image</h5>
+        <hr>
+                       <img class="profile-pic" src="{{request.user.customer.profile_pic.url}}">
+
+    </div>
+</div>
+
+<div class="col-md">
+    <div class="card card-body">
+        <h5> Driver Information</h5>
+        <hr>
+        <form method ="POST" action="" enctype="multipart/form-data">
+        {% csrf_token%}
+        {{form}}
+
+        <p> Name: {{driver.name}}</p>
+        <p> Ic Number: {{driver.ic}}</p>
+        <p> Address: {{driver.Address}}</p>
+        <p> Phone: {{driver.Phone}}</p>
+        <p> Registered Date: {{driver.date_created}}</p>
+    </div>
+</div>
+
+<div class="col-md">
+    <div class="card card-body">
+        <h5> Update System</h5>
+        <hr>
+        
+         {% comment %} <a class="btn btn-outline-info btn-sm btn-block" href="">Update Driver</a> {% endcomment %}
+        <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_driver' driver.id %}">Delete Driver</a>
+    </div>
+</div>
+</div>
+
+<h5> Driver Past Application </h5>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th> Plate Number</th>
+                    <th> Date Created</th>
+                    <th> Origin</th>
+                    <th> Destination</th>
+                    <th> Status</th>
+                    <th> View</th>
+                </tr>
+                <tr>
+                {% for driver_application in driver_application %}
+                    <th> {{driver_application.plate}} </th>
+                    <th> {{driver_application.date_created}} </th>
+                    <th> {{driver_application.origin}} </th>
+                    <th> {{driver_application.destination}} </th>
+                    <th> {{driver_application.status}} </th>
+                    <th> <a href="{% url 'application' driver_application.id %}"> View</a> </th>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

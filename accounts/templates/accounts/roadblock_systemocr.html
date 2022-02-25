@@ -1,0 +1,444 @@
+{% include 'accounts/maintemplate.html' %}
+
+{% block content %}
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.align-right{
+    text-align:right;
+    border=0;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+  }
+  
+  .alert.success {background-color: #04AA6D;}
+  .alert.info {background-color: #2196F3;}
+  .alert.warning {background-color: #ff9800;}
+  
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
+</style>
+
+<br>
+ 
+
+
+<h4> Roadblock Data</h4>
+<br>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+                <table>
+                    
+                    <tr>
+                        
+                        <th><p> Scanned Image</p></th>
+                    </tr>
+                    <tr><center>
+                        <th><img  width="240" height="190" class="profile-pic" src="../static/images/LicPlateImages/capturedimageocr.jpg"></th>
+                    </center></tr>
+                </table>
+
+            
+            
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="main" id="section1">
+<h5> Plate Search</h5>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            {%for message in messages%}
+                <div class="alert success">
+                    <span class="closebtn">&times;</span>  
+                    <strong>Success!</strong> {{message}}
+                  </div>
+            
+                {% endfor %}
+
+            <div style="overflow-x:auto;">
+                <table class="table table-sm">
+                    <tr>
+                        <th> Car Type</th>
+                        <th> Plate Number</th>
+                        <th> Date Leaving</th>
+                        <th> Origin</th>
+                        <th> Destination</th>
+                        <th> Reason</th>
+                        <th> Camera </th>
+                        <th> Status</th>
+                    </tr>
+                    <tr>
+                    
+                        <th> {{application_data.Car}} </th>
+                        <th> {{application_data.plate}} </th>
+                        <th> {{application_data.date_leaving}} </th>
+                        <th> {{application_data.origin}} </th>
+                        <th> {{application_data.destination}} </th>
+                        <th> {{application_data.reason}} </th>
+                        <th> <a href="#section2">View Camera</a>
+                        <th> <a href="#section3">{{application_data.status}}</a> </th>
+                        </tr>
+                   
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+
+
+
+
+<div class="main" id="section2">
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+        <h5>Camera Viewer</h5>
+        <hr>
+        <div style="overflow-x:auto;">
+            <table>
+            <tr>
+            <th> Position Type:</th>
+            <th> Camera Position</th>
+            </tr>
+                <tr>
+                    <th><p>Right</p></th>
+                    <th><img width="426" height="240" src="{% url 'video_feed1' %}"></th>
+                </tr>
+                <tr>
+                    <th><p>Left</p></th>
+                    <th><img width="426" height="240" src="{% url 'video_feed2' %}"></th>
+                </tr>
+            </table>
+        </div>
+             
+        <div style="overflow-x:auto;">
+        
+        </div>
+    </div>
+</div>
+
+<div class="col-md">
+    <div class="card card-body">
+        <h5> Passenger Information: </h5>
+        <hr>
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'driver' )" id="defaultOpen">Driver</button>
+            <button class="tablinks" onclick="openCity(event, 'passenger1')">Passenger 1</button>
+            <button class="tablinks" onclick="openCity(event, 'passenger2')">Passenger 2</button>
+            <button class="tablinks" onclick="openCity(event, 'passenger3')">Passenger 3</button>
+            <button class="tablinks" onclick="openCity(event, 'passenger4')">Passenger 4</button>
+            </div>
+
+            <div id="driver" class="tabcontent">
+                <div style="overflow-x:auto;">
+                    <table>
+                        <tr>
+                            {% for driver_data in driver_data %}
+                            <th> Driver Pic</th>
+                            <th> Driver IC</th>
+                        </tr>
+                            <tr>
+                                <th><img  width="150" height="190" class="profile-pic" src="{{driver_data.profile_pic.url}} "></th>
+                                <th><img  width="300" height="190" class="profile-pic" src="{{driver_data.driver_ic.url}} "></th>
+                            </tr>
+                            {%endfor%}
+                    </table>
+                </div>
+                <table class="table table-sm">
+                    <tr>
+                        <th>Name</th>
+                        <th>IC</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                    </tr>
+                    <hr>
+                    <tr>
+                        {% for driver_data in driver_data %}
+                        <th>{{driver_data.name}}</th>
+                        <th>{{driver_data.ic}}</th>
+                        <th>{{driver_data.Address}}</th>
+                        <th>{{driver_data.Phone}}</th>
+                         {%endfor%}
+                    </tr>
+                </table>
+            </div>
+
+            <div id="passenger1" class="tabcontent">
+                <div style="overflow-x:auto;">
+                    <table>
+                        <tr>
+                            {% comment %} {% for application in application %} {% endcomment %}
+                            <th> Passenger Pic</th>
+                            <th> Passenger IC</th>
+                        </tr>
+                            <tr>
+                            <th> <img width="150" height="190" class="profile-pic" src="{{application_data.image1.url}}"> </th>
+                            <th> <img width="300" height="190" class="profile-pic" src="{{application_data.image_ic1.url}}"> </th>
+                            </tr>
+                            {% comment %} {%endfor%} {% endcomment %}
+                    </table>
+                </div>
+                    <table class="table table-sm">
+                    <tr>
+                        <th>Name</th>
+                        <th>IC</th>
+                    </tr>
+                    <hr>
+                    {% comment %} {% for application in application %} {% endcomment %}
+                    <tr>
+                        <th>{{application_data.name_passenger1}}</th>
+                        <th>{{application_data.ic_passenger1}}</th>
+                    </tr>
+                    {% comment %} {% endfor %} {% endcomment %}
+                    </table>
+            </div>
+
+            <div id="passenger2" class="tabcontent">
+                <div style="overflow-x:auto;">
+                    <table>
+                        <tr>
+                            {% for application in application %}
+                            <th> Passenger Pic</th>
+                            <th> Passenger IC</th>
+                        </tr>
+                            <tr>
+                            <th> <img width="150" height="190" class="profile-pic" src="{{application_data.image2.url}}"> </th>
+                            <th> <img width="300" height="190" class="profile-pic" src="{{application_data.image_ic2.url}}"> </th>
+                            </tr>
+                            {%endfor%}
+                    </table>
+                </div>
+                    <table class="table table-sm">
+                    <tr>
+                        <th>Name</th>
+                        <th>IC</th>
+                    </tr>
+                    <hr>
+                    {% comment %} {% for application in application %} {% endcomment %}
+                    <tr>
+                        <th>{{application_data.name_passenger2}}</th>
+                        <th>{{application_data.ic_passenger2}}</th>
+                    </tr>
+                    {% comment %} {% endfor %} {% endcomment %}
+                    </table>
+            </div>
+
+        <div id="passenger3" class="tabcontent">
+            <div style="overflow-x:auto;">
+                <table>
+                    <tr>
+                        {% for application in application %}
+                        <th> Passenger Pic</th>
+                        <th> Passenger IC</th>
+                    </tr>
+                    <tr>
+                        <th> <img width="150" height="190" class="profile-pic" src="{{application.image3.url}}"> </th>
+                        <th> <img width="300" height="190" class="profile-pic" src="{{application.image_ic3.url}}"> </th>
+                    </tr>
+                        {%endfor%}
+                </table>
+            </div>
+                <table class="table table-sm">
+                    <tr>
+                        <th>Name</th>
+                        <th>IC</th>
+                    </tr>
+                    <hr>
+                    {% for application in application %}
+                    <tr>
+                        <th>{{application.name_passenger3}}</th>
+                        <th>{{application.ic_passenger3}}</th>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <div id="passenger4" class="tabcontent">
+                <div style="overflow-x:auto;">
+                        <table>
+                            <tr>
+                                {% for application in application %}
+                                <th> Passenger Pic</th>
+                                <th> Passenger IC</th>
+                            </tr>
+                            <tr>
+                                <th> <img width="150" height="190" class="profile-pic" src="{{application.image4.url}}"> </th>
+                                <th> <img width="300" height="190" class="profile-pic" src="{{application.image_ic4.url}}"> </th>
+                            </tr>
+                                {%endfor%}
+                        </table>
+                </div>
+                        <table class="table table-sm">
+                    <tr>
+                            <th>Name</th>
+                            <th>IC</th>
+                    </tr>
+                        <hr>
+                        {% for application in application %}
+                    <tr>
+                            <th>{{application.name_passenger4}}</th>
+                            <th>{{application.ic_passenger4}}</th>
+                    </tr>
+                        {% endfor %}
+                </table>
+            </div>
+       </div>
+
+    </div>
+    </div>
+</div>
+
+<br>
+<div class="main" id="section3">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5> Other Information</h5>
+            <div style="overflow-x:auto;">
+                <div class="align-right">
+                <button type="submit" onclick="location.href='{% url 'servo_pass' %}'" name='mybtn2'>Pass</button>
+                <button type="submit" onclick="location.href='{% url 'servo_manual' %}'" name='mybtn2'>Manual Inspection</button>
+                <button type="submit" onclick="location.href='{% url 'servo_gate' %}'" name='mybtn2'>Manual Close Gate</button>
+                
+                <table class="table table-sm">
+                    <tr>
+                        <th>Description</th>
+                        <th>-</th>
+                    </tr>
+                    <hr>
+                    <tr>
+                        {% for application in application %}
+                        <th>Status: </th>
+                        <th>{{application.status}}</th>
+                        {%endfor%}
+                    </tr>
+                    <tr>
+                        {% for application in application %}
+                        <th>Issue By: </th>
+                        <th>{{application.officername}}</th>
+
+                        {%endfor%}
+                    </tr>
+            </div>
+            {% comment %} <a class="btn btn-outline-info btn-sm btn-block" href="">Update Driver</a> {% endcomment %}
+            {% comment %} <a class="btn btn-outline-danger btn-sm btn-block" href="{% url 'delete_driver' driver.id %}">Delete Driver</a> {% endcomment %}
+        </div>
+    
+    </div>
+   
+</div>
+
+
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+  }
+}
+
+document.getElementById("defaultOpen").click();
+</script>
+
+
+
+{% endblock%}

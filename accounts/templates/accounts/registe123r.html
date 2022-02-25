@@ -1,0 +1,22 @@
+{% include 'accounts/maintemplate.html' %}
+
+<br>
+<h2>Registration</h2>
+<form method = "POST" action="">
+{% csrf_token %}
+<input type="text" name="first_name" maxlength="30" id="id_first_name">
+{{form}}
+
+<input type="submit" name="Create User"></input>
+</form>
+{{form.errors}}
+
+{%for message in messages%}
+
+<p> {{message}} </p>
+
+{% endfor %}
+
+
+
+

@@ -1,0 +1,35 @@
+
+
+{% include 'accounts/statistic_police.html' %}
+{% block content %}
+
+<br>
+
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5> Application Form List</h5>
+                </div>
+            <div class="card card-body">
+                <table class="table">
+                <tr>
+                    <th> Driver Name</th>
+                    <th> Car Plate </th>
+                    <th> Application Status </th>
+                    </tr>
+                    
+                    {% for i in appstatus%}
+                    <tr>
+                            <th>{{i.name}}</th>
+                            <th>{{i.plate}}</th>
+                            <th>{{i.status}}</th>
+                    {% endfor%}
+                    
+                    
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</br>
+{% endblock content%}

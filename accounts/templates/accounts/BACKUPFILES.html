@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Police-Cross District System</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3.org/TR/wai-aria-practices/examples/menu-button/css/menuButtonAction.css">
+
+</head>
+<body>
+
+
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #ffff;
+    margin-right:20px;
+  }
+
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    
+      <li class="nav-item active">
+        <a class="nav-link" href="/statistic/">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/account_settings/">Accounts</a>
+      </li>
+      
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Aplication
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/createnewapplication/">Create New</a>
+          <a class="dropdown-item" href="/updateapp/">Application History</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Approval
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/approval_page/">Pending Approval</a>
+          <a class="dropdown-item" href="/allapplication/">All Application</a>
+          
+           
+        </div>
+      </li>
+      
+      
+    </ul>
+  </div>
+  <span class="hello-msg"> Hello, ameerul </span>
+  <span ><a class="hello-msg" href="/logout/"> Logout</a></span>
+
+</nav>
+</div>
+
+
+
+
+
+
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://www.w3.org/TR/wai-aria-practices/examples/menu-button/js/Menubutton.js"></script>
+<script src="https://www.w3.org/TR/wai-aria-practices/examples/menu-button/js/MenuItemAction.js" ></script>
+<script src="https://www.w3.org/TR/wai-aria-practices/examples/menu-button/js/PopupMenuAction.js" ></script>
+</html>
+
+
+
+
+<br>
+
+<h4>Create New Application Form</h4>
+<br>
+<form action="" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="csrfmiddlewaretoken" value="ECQLBcu4CQ0AzRkOGxkvHXJEqVKQdd5tV7iryltEgVYfdX0w0CtNyTbeRIWPl1wD">
+<p><label for="id_Car">Car:</label> <input type="text" name="Car" maxlength="30" required id="id_Car"></p>
+<p><label for="id_plate">Plate:</label> <input type="text" name="plate" maxlength="10" required id="id_plate"></p>
+<p><label for="id_date_leaving">Date leaving:</label> <input type="text" name="date_leaving" required id="id_date_leaving"></p>
+<p><label for="id_date_arrive">Date arrive:</label> <input type="text" name="date_arrive" required id="id_date_arrive"></p>
+<p><label for="id_origin">Origin:</label> <input type="text" name="origin" maxlength="25" required id="id_origin"></p>
+<p><label for="id_destination">Destination:</label> <input type="text" name="destination" maxlength="25" required id="id_destination"></p>
+<p><label for="id_reason">Reason:</label> <input type="text" name="reason" maxlength="500" required id="id_reason"></p>
+<p><label for="id_document_description">Document description:</label> <input type="text" name="document_description" maxlength="500" required id="id_document_description"></p>
+<p><label for="id_document">Document:</label> <input type="file" name="document" required id="id_document"></p>
+<p><label for="id_name_passenger1">Name passenger1:</label> <input type="text" name="name_passenger1" maxlength="200" id="id_name_passenger1"></p>
+<p><label for="id_ic_passenger1">Ic passenger1:</label> <input type="number" name="ic_passenger1" id="id_ic_passenger1"></p>
+<p><label for="id_image1">Image1:</label> <input type="file" name="image1" accept="image/*" id="id_image1"></p>
+<p><label for="id_image_ic1">Image ic1:</label> <input type="file" name="image_ic1" accept="image/*" id="id_image_ic1"></p>
+<p><label for="id_name_passenger2">Name passenger2:</label> <input type="text" name="name_passenger2" maxlength="200" id="id_name_passenger2"></p>
+<p><label for="id_ic_passenger2">Ic passenger2:</label> <input type="number" name="ic_passenger2" id="id_ic_passenger2"></p>
+<p><label for="id_image2">Image2:</label> <input type="file" name="image2" accept="image/*" id="id_image2"></p>
+<p><label for="id_image_ic2">Image ic2:</label> <input type="file" name="image_ic2" accept="image/*" id="id_image_ic2"></p>
+<p><label for="id_name_passenger3">Name passenger3:</label> <input type="text" name="name_passenger3" maxlength="200" id="id_name_passenger3"></p>
+<p><label for="id_ic_passenger3">Ic passenger3:</label> <input type="number" name="ic_passenger3" id="id_ic_passenger3"></p>
+<p><label for="id_image3">Image3:</label> <input type="file" name="image3" accept="image/*" id="id_image3"></p>
+<p><label for="id_image_ic3">Image ic3:</label> <input type="file" name="image_ic3" accept="image/*" id="id_image_ic3"></p>
+<p><label for="id_name_passenger4">Name passenger4:</label> <input type="text" name="name_passenger4" maxlength="200" id="id_name_passenger4"></p>
+<p><label for="id_ic_passenger4">Ic passenger4:</label> <input type="number" name="ic_passenger4" id="id_ic_passenger4"></p>
+<p><label for="id_image4">Image4:</label> <input type="file" name="image4" accept="image/*" id="id_image4"></p>
+<p><label for="id_image_ic4">Image ic4:</label> <input type="file" name="image_ic4" accept="image/*" id="id_image_ic4"></p>
+<input type="submit">
+</form>
+
+
