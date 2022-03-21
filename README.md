@@ -11,6 +11,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#project-overview">Project Overview</a></li>
       </ul>
     </li>
     <li>
@@ -26,9 +27,16 @@
 ## About The Project
 
 <p align="justify">This project is created for the Integrated Design Project (IDP 2021) for Mechatronic Courses. The title choose is based on the Covid-19 themes which it believed that can help most of the people during Covid-19 pandemic. This project will uses raspberry pi which 2 webcamera and 1 pi camera. The system itself is divided into two types of accounts which is officer and citizen account. Citizen account allow the citizen to apply cross-district permission through webbased system. It will needed an approval from the police which will be approved by the officer and the office. At the roadblock, the officer can uses either manual scan or Optical Character Recognition (OCR) to allow the system read the car plate at the roadblock which reduce the process of inspection at the police roadblock during movement control order (MCO).</p>
+<br>
+<p> Here is the overview of system </p>
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
+
+### Project Overview
+Here is the overview of system
+
+* [System Overview Through Local Connection](https://youtu.be/d7yqyGYtnys)
+* [System Overview Through Wan Connection](https://youtu.be/FfGAIQM3qRM)
 
 
 ### Built With
