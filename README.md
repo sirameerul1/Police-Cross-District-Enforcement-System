@@ -32,6 +32,8 @@
 
 * [Powerpoint Slide for documentation](https://docs.google.com/presentation/d/1UusXiWREnN5PF586t5xOOmZEKlE2SaZR/edit?usp=sharing&ouid=114177247346984645294&rtpof=true&sd=true)
 
+* [Project Report]([https://docs.google.com/presentation/d/1UusXiWREnN5PF586t5xOOmZEKlE2SaZR/edit?usp=sharing&ouid=114177247346984645294&rtpof=true&sd=true](https://drive.google.com/file/d/1Oo1DMzBS1F4Jp_5mwkb9IP3BTFafqPA-/view?usp=sharing))
+
 ### Project Overview
 Here is the overview of system
 
