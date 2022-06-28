@@ -30,13 +30,15 @@
 <br>
 <p> Here is the overview of system </p>
 
-
+* [Powerpoint Slide for documentation](https://docs.google.com/presentation/d/1UusXiWREnN5PF586t5xOOmZEKlE2SaZR/edit?usp=sharing&ouid=114177247346984645294&rtpof=true&sd=true)
 
 ### Project Overview
 Here is the overview of system
 
 * [System Overview Through Local Connection](https://youtu.be/d7yqyGYtnys)
 * [System Overview Through Wan Connection](https://youtu.be/FfGAIQM3qRM)
+
+
 
 
 ### Built With
